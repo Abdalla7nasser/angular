@@ -1,0 +1,40 @@
+<section *ngIf="prodectDooo" class="w-75 mx-auto rounded shadow p-3 bg-main-light my-3">
+    <div class="row align-items-center g-4" >
+        <div class="col-md-3">
+
+            <owl-carousel-o [options]="datalsOptions">
+
+                <ng-container *ngFor="let datalsslide of prodectDooo.images">
+                  <ng-template carouselSlide [id]="datalsslide.id">
+                    <img [src]="datalsslide" alt="">
+                  </ng-template>
+                </ng-container>
+            
+              </owl-carousel-o>
+
+            
+        </div>
+        <div class="col-md-9">
+
+            <div >
+                
+                <h3 class="h6">{{prodectDooo.title }}</h3>
+                <p class="text-muted">{{prodectDooo.description}}</p>
+                <span>{{prodectDooo.category.name}}</span>
+                <div class="d-flex align-items-center justify-content-between">
+                    
+                    <span class="small text-muted">{{prodectDooo.price | currency:"EGP"}}</span>
+                    <SPan>
+                        <i class="fas fa-star rating-color"></i>
+                        {{prodectDooo.ratingsAverage}}
+                    </SPan>
+                </div>
+               </div>
+
+               <footer>
+                <button (click)="addproot(prodectDooo._id, addrt)" #addrt class="main-btn  w-100">+Add To Cart</button>
+
+               </footer>
+        </div>
+    </div>
+</section>

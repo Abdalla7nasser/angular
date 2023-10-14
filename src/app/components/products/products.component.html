@@ -1,0 +1,48 @@
+<section class="py-4" *ngIf="product2.length > 0" >
+    <h2 class="text-center fs-1 fw-bold ">All Products</h2>
+    <div class="row justify-content-center g-4">
+        <div *ngFor="let itemPro of product2 | paginate: { id: 'prodectpag',
+        itemsPerPage: pageSize,
+        currentPage: pprod,
+        totalItems: total } " class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="product h-100">
+               <div role="button" [routerLink]="['/datels', itemPro._id]">
+                <img class="w-100" [src]="itemPro.imageCover" [title]="itemPro.title" [alt]="itemPro.title">
+                <h3 class="h6">{{itemPro.title | cuttext:2}}</h3>
+                <h4 class="h6 text-main">{{itemPro.category.name}}</h4>
+                <div class="d-flex align-items-center justify-content-between">
+                    <span class="small text-muted">{{itemPro.price | currency:"EGP"}}</span>
+                    <SPan>
+                        <i [class.rating-color]="itemPro.ratingsAverage >= ster" *ngFor="let ster of [1,2,3,4,5]" class="fas fa-star rating-color"></i>
+                        {{itemPro.ratingsAverage}}
+                    </SPan>
+                </div>
+               </div>
+
+               <footer>
+                <button (click)="addproot(itemPro._id, addrt)" #addrt class="main-btn  w-100">+Add To Cart</button>
+               </footer>
+            </div>
+        </div>
+       
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+   
+    <pagination-controls  id= 'prodectpag'
+        
+        (pageChange)="pageChanged($event)"
+        (pageBoundsCorrection)="pageChanged($event)"
+        [maxSize]="9"
+        [directionLinks]="true"
+        [autoHide]="true"
+        [responsive]="true"
+        previousLabel="Previous"
+        nextLabel="Next"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page">
+
+</pagination-controls>
+    </div>
+    
+</section>

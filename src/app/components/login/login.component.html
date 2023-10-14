@@ -1,0 +1,40 @@
+<section class="w-75 mx-auto shadow rounded p-4 my-3 bg-main-light">
+    <h1 class="my-3">login New</h1>
+    <form [formGroup]="loginform" (ngSubmit)="handelform()">
+      
+
+
+       <div class="form-item">
+        <label for="email">email</label>
+        <input type="email" formControlName="email" class="form-control" id="email">
+
+        <div class="alert alert-danger w-50 mx-auto" *ngIf="loginform.get('email')?.errors && loginform.get('email')?.touched">
+            <p *ngIf="loginform.get('email')?.getError('required')">email Is required</p>
+            <p *ngIf="loginform.get('email')?.getError('email')">email invalid</p>
+        </div>
+       </div>
+
+       <div class="form-item">
+        <label for="password">password</label>
+        <input type="password" formControlName="password" class="form-control" id="password">
+
+        <div class="alert alert-danger w-50 mx-auto" *ngIf="loginform.get('password')?.errors && loginform.get('password')?.touched">
+            <p *ngIf="loginform.get('password')?.getError('required')">password Is required</p>
+            <p *ngIf="loginform.get('password')?.getError('pattern')">password must be at 6 chars</p>
+            
+
+        </div>
+       </div>
+
+      
+
+       <button [disabled]="loginform.invalid" class="main-btn my-2">
+        login <span *ngIf="isloding"><i class="fas fa-spin fa-spinner"></i></span>
+    </button>
+    </form>
+
+    <p *ngIf="erroMas" class="alert alert-danger p-1 w-50 mx-auto mb-0 text-center">
+        {{erroMas}}
+    </p>
+</section>
+

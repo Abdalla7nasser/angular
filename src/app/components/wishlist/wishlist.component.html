@@ -1,0 +1,29 @@
+<section class="py-4" *ngIf="productwsh.length > 0" >
+    
+    
+    <div class="row g-4">
+        <div *ngFor="let itemPro of productwsh " class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="product h-100">
+
+                <i *ngIf="!wishdata.includes( $any(itemPro._id) )" (click)="wisssh(itemPro._id)" class="fa-regular fa-heart heart" ></i>
+                <i  *ngIf="wishdata.includes( $any(itemPro._id) )" (click)="removwish(itemPro._id)" class="fa-solid fa-heart heart"></i>
+               <div role="button" [routerLink]="['/datels', itemPro._id]">
+                <img class="w-100" [src]="itemPro.imageCover" [title]="itemPro.title" [alt]="itemPro.title">
+                <h3 class="h6">{{itemPro.title | cuttext:3}}</h3>
+                <h4 class="h6 text-main">{{itemPro.category.name}}</h4>
+                <div class="d-flex align-items-center justify-content-between">
+                    <span class="small text-muted">{{itemPro.price | currency:"EGP"}}</span>
+                    <SPan>
+                        <i [class.rating-color]="itemPro.ratingsAverage >= ster" *ngFor="let ster of [1,2,3,4,5]" class="fas fa-star rating-color"></i>
+                        {{itemPro.ratingsAverage}}
+                    </SPan>
+                </div>
+               </div>
+
+               <footer>
+                <button (click)="addproot(itemPro._id, addrt)" #addrt class="main-btn  w-100">+Add To Cart</button>
+               </footer>
+            </div>
+        </div>
+    </div>
+</section>
